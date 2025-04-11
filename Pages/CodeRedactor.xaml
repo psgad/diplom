@@ -1,0 +1,328 @@
+﻿<Page x:Class="Diplom.CodeRedactor"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Diplom"
+      xmlns:avalon="http://icsharpcode.net/sharpdevelop/avalonedit"
+      mc:Ignorable="d" Width="1500"
+      Title="DownloadBotPage" Height="800">
+    <Page.Resources>
+        <!-- Стиль для кнопки -->
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#FFA26048"/>
+            <!-- Яркий оранжевый -->
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="25,10"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                            Padding="{TemplateBinding Padding}"
+                            Background="{TemplateBinding Background}"
+                                CornerRadius="10"
+                                BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF8F00"/>
+                    <!-- Чуть светлее при наведении -->
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#FFA26048"/>
+                    <!-- Темнее при нажатии -->
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#fff"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="BorderBrush" Value="#fff"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="CaretBrush" Value="#fff"/>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Foreground" Value="#000"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="TreeViewItem">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#fff"/>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Background" Value="#000"/>
+                </Trigger>
+            </Style.Triggers>
+            
+        </Style>
+
+        <!-- Тень для эффекта Material Design -->
+        <DropShadowEffect x:Key="MaterialDesignShadow" 
+                          ShadowDepth="2" 
+                          Direction="270" 
+                          Color="Black" 
+                          Opacity="0.3" 
+                          BlurRadius="5"/>
+
+        <!-- Анимация появления -->
+        <Storyboard x:Key="FadeInAnimation">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                            From="0" To="1"
+                            Duration="0:0:0.5"
+                            DecelerationRatio="0.9"/>
+        </Storyboard>
+
+    </Page.Resources>
+
+    <!-- Основной контейнер -->
+    <Border CornerRadius="15" Margin="10">
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#2D2D2D" Offset="0"/>
+                <GradientStop Color="#3C3C3C" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="20*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="609*"/>
+                <RowDefinition Height="50*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Написание скриптов"
+                      FontSize="24"
+                      FontWeight="Bold"
+                      Foreground="#FFFFFF"
+                      Margin="20,20,0,10"
+                      HorizontalAlignment="Left" Grid.ColumnSpan="3" Width="244"/>
+            <avalon:TextEditor SyntaxHighlighting="Python"
+                               ShowLineNumbers="True"
+                               Background="Transparent"
+                               HorizontalScrollBarVisibility="Hidden"
+                               VerticalScrollBarVisibility="Hidden"
+                               Foreground="#fff"
+                               FontFamily="Consolas"
+                               HorizontalContentAlignment="Stretch"
+                               FontWeight="Normal"
+                               WordWrap="True"
+                               x:Name="CodeEditor"
+                               Grid.Column="2"
+                               Grid.ColumnSpan="2"
+                               Grid.RowSpan="2"
+                               FontSize="14"
+                               Grid.Row="2"
+                               Margin="35,5,35,5"
+                               />
+            <Grid Grid.Row="1"
+                  Grid.Column="3" 
+                  Grid.RowSpan="3"
+                  Visibility="{Binding ConsoleOpen}"
+                  MinHeight="170" Grid.ColumnSpan="2" Margin="406,40,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid Background="#FF2B1515">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="10"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="1"
+                            Content="x"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Padding="0,0,0,2" Click="ConsoleOpenOrClose"
+                            >
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Foreground" Value="#fff"/>
+                                <Setter Property="Background" Value="#FF3C3535"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}"
+                                                    BorderThickness="0"
+                                                    Width="20"
+                                                    Height="20"
+                                                    CornerRadius="22"
+                                                    Padding="{TemplateBinding Padding}">
+                                                <ContentPresenter VerticalAlignment="Center"
+                                                                  HorizontalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#fff"/>
+                                        <Setter Property="Foreground" Value="#000"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Grid>
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden"
+                              HorizontalScrollBarVisibility="Auto">
+
+                    <WrapPanel Background="#000"
+                           Orientation="Vertical"
+                           x:Name="console"
+                           d:Visibility="Visible"
+                           MaxWidth="410">
+                    </WrapPanel>
+                </ScrollViewer>
+            </Grid>
+            <Border Background="#FF584C4C"
+                    Grid.Row="1"
+                    Grid.RowSpan="2"
+                    Grid.ColumnSpan="2">
+                <Grid>
+                    <Grid Visibility="{Binding IsFolderOpen}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Button Grid.Row="1"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Content="Открыть папку"
+                                Click="OpenFolder_Click"/>
+                        <Button Grid.Row="2"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Click="CreateFile_Click"
+                                Width="200">
+                            <TextBlock Text="Выбрать папку и создать new_file.py"
+                                       TextWrapping="Wrap"
+                                       TextAlignment="Center"/>
+                        </Button>
+                    </Grid>
+                    <TreeView Background="Transparent" 
+                              TextBlock.Foreground="#fff" 
+                              Visibility="{Binding FolderOpen}"
+                              x:Name="treeView"/>
+                </Grid>
+            </Border>
+            <StackPanel Grid.Row="3"
+                        Orientation="Horizontal"
+                        Background="#FF584C4C" 
+                        Grid.ColumnSpan="2">
+                <Button Margin="10"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Click="ConsoleOpenOrClose">
+
+                    <TextBlock Text="&lt;/&gt;"
+                                   TextAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"/>
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Foreground" Value="#fff"/>
+                            <Setter Property="Background" Value="#FF3C3535"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}"
+                                                    BorderThickness="0"
+                                                    Width="30"
+                                                    Height="30"
+                                                    CornerRadius="22"
+                                                    Padding="{TemplateBinding Padding}">
+                                            <ContentPresenter VerticalAlignment="Center"
+                                                                  Margin="0,0,0,3"
+                                                                  HorizontalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#fff"/>
+                                    <Setter Property="Foreground" Value="#000"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+                <Button Margin="10"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center" Click="OpenFolder_Click"
+                        >
+
+                    <TextBlock Text="📂"
+                                   TextAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"/>
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Foreground" Value="#fff"/>
+                            <Setter Property="Background" Value="#FF3C3535"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}"
+                                                    BorderThickness="0"
+                                                    Width="30"
+                                                    Height="30"
+                                                    CornerRadius="22"
+                                                    Padding="{TemplateBinding Padding}">
+                                            <ContentPresenter VerticalAlignment="Center"
+                                                                  Margin="0,0,0,3"
+                                                                  HorizontalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#fff"/>
+                                    <Setter Property="Foreground" Value="#000"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+            </StackPanel>
+        </Grid>
+    </Border>
+
+    <!-- Запуск анимации при загрузке -->
+    <Page.Triggers>
+        <EventTrigger RoutedEvent="Page.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                   From="0" To="1"
+                                   Duration="0:0:0.5"
+                                   DecelerationRatio="0.9"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Page.Triggers>
+</Page>

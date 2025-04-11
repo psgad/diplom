@@ -1,0 +1,432 @@
+﻿<Window x:Class="Diplom.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Diplom"
+        mc:Ignorable="d"
+        Title="Main"
+        Height="600"
+        d:Height="800"
+        d:Width="1400"
+        Width="1000"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        WindowStyle="None"
+        AllowsTransparency="True">
+    <Window.Resources>
+        <Storyboard x:Key="ShowMessageAnimation">
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                   From="350" To="0"
+                       Duration="0:0:0.5"
+                   DecelerationRatio="0.9"/>
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                   From="0" To="1" Duration="0:0:1"/>
+        </Storyboard>
+        <Storyboard x:Key="HideMessageAnimation">
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                   From="0" To="350" Duration="0:0:0.5"
+                   AccelerationRatio="0.9"/>
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                   From="1" To="0" Duration="0:0:1"/>
+        </Storyboard>
+        <Style TargetType="Border">
+            <Setter Property="CornerRadius" Value="15"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="Background" Value="#F5F5F5"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Height" Value="70"/>
+            <Setter Property="MaxHeight" Value="70"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="MinWidth" Value="100"/>
+            <Setter Property="MaxWidth" Value="200"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontFamily" Value="Mono sans"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="10,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="12"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    Background="{TemplateBinding Background}"
+                    Width="{TemplateBinding Width}"
+                    Padding="{TemplateBinding Padding}"
+                    MaxWidth="{TemplateBinding MaxWidth}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="Black"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                </Trigger>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="Black"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <SolidColorBrush x:Key="ScrollBarBackground" Color="#F0F0F0"/>
+        <SolidColorBrush x:Key="ScrollBarThumb" Color="Black"/>
+        <SolidColorBrush x:Key="ScrollBarThumbHover" Color="#fdd9b5"/>
+        <SolidColorBrush x:Key="ScrollBarThumbPressed" Color="#faebd7"/>
+
+        <Style TargetType="{x:Type ScrollBar}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="Background" Value="{StaticResource ScrollBarBackground}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollBar}">
+                        <Grid x:Name="Bg" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <Track x:Name="PART_VerticalTrack" Grid.Column="1" IsDirectionReversed="true" Visibility="Collapsed">
+                                    <Track.Thumb>
+                                        <Thumb x:Name="VerticalThumb">
+                                            <Thumb.Style>
+                                                <Style TargetType="{x:Type Thumb}">
+                                                    <Setter Property="Width" Value="10"/>
+                                                    <Setter Property="Background" Value="{StaticResource ScrollBarThumb}"/>
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type Thumb}">
+                                                                <Border Background="{TemplateBinding Background}"
+                                        CornerRadius="5"
+                                        BorderThickness="0"/>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Background" Value="{StaticResource ScrollBarThumbHover}"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsDragging" Value="True">
+                                                            <Setter Property="Background" Value="{StaticResource ScrollBarThumbPressed}"/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Thumb.Style>
+                                        </Thumb>
+                                    </Track.Thumb>
+                                </Track>
+
+                                <Track x:Name="PART_HorizontalTrack" Grid.Row="1" Visibility="Collapsed">
+                                    <Track.Thumb>
+                                        <Thumb x:Name="HorizontalThumb">
+                                            <Thumb.Style>
+                                                <Style TargetType="{x:Type Thumb}">
+                                                    <Setter Property="Height" Value="10"/>
+                                                    <Setter Property="Background" Value="{StaticResource ScrollBarThumb}"/>
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type Thumb}">
+                                                                <Border Background="{TemplateBinding Background}"
+                                        CornerRadius="5"
+                                        BorderThickness="0"/>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Background" Value="{StaticResource ScrollBarThumbHover}"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsDragging" Value="True">
+                                                            <Setter Property="Background" Value="{StaticResource ScrollBarThumbPressed}"/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Thumb.Style>
+                                        </Thumb>
+                                    </Track.Thumb>
+                                </Track>
+                            </Grid>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Orientation" Value="Vertical">
+                                <Setter TargetName="PART_VerticalTrack" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="PART_HorizontalTrack" Property="Visibility" Value="Collapsed"/>
+                            </Trigger>
+                            <Trigger Property="Orientation" Value="Horizontal">
+                                <Setter TargetName="PART_HorizontalTrack" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="PART_VerticalTrack" Property="Visibility" Value="Collapsed"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Border BorderThickness="6"
+            CornerRadius="15"
+            Opacity="0.97"
+            Background="#fdd9b5" 
+            x:Name="mainBorder"
+            BorderBrush="#4c0000"
+            >
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="111*"/>
+                <ColumnDefinition Width="330"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="92"/>
+                <RowDefinition Height="550*"/>
+                <RowDefinition Height="138"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1"
+            Grid.ColumnSpan="2"
+            Background="Transparent">
+                <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+                    <Button Click="Button_Click">
+                        <TextBlock Text="Установка бота"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"/>
+                    </Button>
+                    <Button Click="Button_Click">
+                        <TextBlock Text="Настройка приложений бота"
+                       TextWrapping="Wrap"
+                                   TextAlignment="Center"/>
+                    </Button>
+                    <Button Click="Button_Click">
+                        <TextBlock Text="Настройки бота"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"/>
+                    </Button>
+                    <Button Click="Button_Click">
+                        <TextBlock Text="Добавление скрипта"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"/>
+                    </Button>
+                    <Button Click="Button_Click">
+                        <TextBlock Text="Просмотр логов"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"/>
+                    </Button>
+                    <Button Click="Button_Click"
+                            x:Name="guideButton">
+                        <TextBlock Text="Руководство пользователя"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"/>
+                    </Button>
+                    <!--<Button Click="Button_Click">
+                        <TextBlock Text="Общие настройки"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"/>
+                    </Button>-->
+                    
+                </StackPanel>
+            </Grid>
+            <Border Grid.Row="3"
+                    Panel.ZIndex="1"
+                    Margin="10"
+                    Background="LightGray"
+                    x:Name="messageGrid"
+                    Grid.Column="1"
+                    BorderThickness="2"
+                    BorderBrush="Black"
+                    Opacity="0"
+                    CornerRadius="10">
+                <Border.RenderTransform>
+                    <TranslateTransform X="350" Y="0"/>
+                </Border.RenderTransform>
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="18*"/>
+                        <RowDefinition Height="13*"/>
+                        <RowDefinition Height="72*"/>
+                        <RowDefinition Height="28*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="63*"/>
+                        <ColumnDefinition Width="184*"/>
+                        <ColumnDefinition Width="17*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="messageTitle"
+                   Grid.ColumnSpan="3"
+                   Text="Предупреждение"
+                   FontSize="10"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+
+                   FontWeight="DemiBold"
+                   Margin="5,0,0,0"/>
+                    <Image Grid.Row="2"
+               Grid.Column="1"
+               Source="error.ico"
+               x:Name="messageIcon"/>
+                    <TextBlock Grid.Row="2"
+                   Grid.Column="2"
+                   x:Name="messageText"
+                   FontWeight="DemiBold"
+                   Text="Вы слишком плохо срете в настройке конфигурации поэтому идите набок пожалуйста"
+                   TextWrapping="Wrap"
+                   TextAlignment="Center"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
+
+                    <Button Grid.Column="3"
+                            Grid.RowSpan="2"
+                            Width="15"
+                            Height="15"
+                            FontSize="15"
+                            Background="#ff6158"
+                            BorderThickness="0.3"
+                            Click="Button_Click_1"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left">
+                        <TextBlock HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Center"
+                                   Text="×"
+                                   Padding="0,0,0,4"/>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}"
+                      BorderThickness="{TemplateBinding BorderThickness}"
+                      BorderBrush="{TemplateBinding BorderBrush}"
+                      CornerRadius="15">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Foreground" Value="#4c0000"/>
+                                <Setter Property="BorderBrush" Value="#ed4a46"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Foreground" Value="White"/>
+                                        <Setter Property="BorderBrush" Value="Black"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Grid>
+            </Border>
+            <Grid Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="10"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="3"
+                Width="15"
+                Height="15"
+                FontSize="15"
+                Background="#ff6158"
+                BorderThickness="0.3"
+                Click="CloseButton_Click">
+                    <TextBlock HorizontalAlignment="Center"
+                     VerticalAlignment="Center"
+                     TextAlignment="Center"
+                     Text="×"
+                     Padding="0,0,0,4"/>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+                      BorderThickness="{TemplateBinding BorderThickness}"
+                      BorderBrush="{TemplateBinding BorderBrush}"
+                      CornerRadius="15">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Foreground" Value="#4c0000"/>
+                            <Setter Property="BorderBrush" Value="#ed4a46"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="BorderBrush" Value="Black"/>
+                                </Trigger>
+                                <Trigger Property="IsFocused" Value="True">
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="BorderBrush" Value="Black"/>
+                                </Trigger>
+                                
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button Grid.Column="2"
+                        Width="15"
+                        Height="15"
+                        FontSize="15"
+                        Background="#FF55B755"
+                        BorderThickness="0.3"
+                        Click="MinimizeButton_Click">
+                    <TextBlock HorizontalAlignment="Center"
+     VerticalAlignment="Center"
+     TextAlignment="Center"
+     Text="-"
+     Padding="0,0,0,4"/>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+      BorderThickness="{TemplateBinding BorderThickness}"
+      BorderBrush="{TemplateBinding BorderBrush}"
+      CornerRadius="15">
+                                <ContentPresenter HorizontalAlignment="Center"
+                  VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Foreground" Value="#4c0000"/>
+                            <Setter Property="BorderBrush" Value="#FF55B755"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="BorderBrush" Value="Black"/>
+                                </Trigger>
+                                <Trigger Property="IsFocused" Value="True">
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="BorderBrush" Value="Black"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid>
+            <ScrollViewer VerticalScrollBarVisibility="Hidden"
+                          HorizontalScrollBarVisibility="Hidden"
+                          Margin="20"
+                          Grid.Row="2"
+                          Grid.ColumnSpan="2"
+                          Grid.RowSpan="2">
+                <Frame x:Name="content" 
+                       NavigationUIVisibility="Hidden"
+                       />
+            </ScrollViewer>
+        </Grid>
+    </Border>
+</Window>

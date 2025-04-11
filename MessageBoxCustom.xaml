@@ -1,0 +1,54 @@
+﻿<Window x:Class="Diplom.MessageBoxCustom"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Сообщение" Height="200" Width="400" WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        ResizeMode="NoResize" 
+        Background="Transparent"
+        AllowsTransparency="True">
+    <Window.Resources>
+        <Style TargetType="Border">
+            <Setter Property="CornerRadius" Value="22"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="#fff"/>
+            <Setter Property="Background" Value="#FF382F2F"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderThickness="1"
+                                CornerRadius="10"
+                                >
+                            <ContentPresenter VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Border Background="White"
+                CornerRadius="10"
+                Padding="10"
+                Width="380"  
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock x:Name="MessageText" Text="Текст сообщения" FontSize="14" TextWrapping="Wrap" MinHeight="100"/>
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" >
+                    <Button Content="OK" Width="80" Margin="5" Click="OkButton_Click"/>
+                    <Button Content="Отмена" Width="80" Margin="5" Click="CancelButton_Click" Visibility="Collapsed" x:Name="CancelButton"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

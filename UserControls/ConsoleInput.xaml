@@ -1,0 +1,28 @@
+﻿<UserControl x:Class="Diplom.ConsoleInput"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Diplom"
+             mc:Ignorable="d"
+             MaxWidth="500">
+    <Grid>
+        <TextBox Background="Transparent"
+                 Foreground="#fff"
+                 BorderThickness="0"
+                 FontFamily="Consolas"
+                 d:Text="c:\users\juras> dir"
+                 Width="390"
+                 Style="{x:Null}"
+                 MaxHeight="390"
+                 x:Name="command"
+                 PreviewTextInput="command_PreviewTextInput"
+                 SelectionChanged="command_SelectionChanged"
+                 TextWrapping="Wrap"
+                 CaretBrush="#fff"
+                 PreviewMouseDown="command_PreviewMouseDown"
+                 PreviewKeyDown="command_PreviewKeyDown"
+                 KeyDown="command_KeyDown"
+                 />
+    </Grid>
+</UserControl>
