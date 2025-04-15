@@ -221,9 +221,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <!-- Основной контент -->
             <ColumnDefinition Width="Auto"/>
-            <!-- Вопросик -->
         </Grid.ColumnDefinitions>
 
         <TextBlock x:Name="title" 
@@ -237,49 +235,5 @@
                    />
         <ContentControl x:Name="content" 
                         Grid.Row="1"/>
-        <Grid Grid.Column="1" 
-              Visibility="{Binding Question, RelativeSource={RelativeSource AncestorType=UserControl}}"
-              HorizontalAlignment="Center" 
-              VerticalAlignment="Center"
-              Grid.Row="1"
-              >
-            <Border x:Name="QuestionCircle"
-                    Width="20"
-                    Height="20"
-                    Background="LightGray"
-                    BorderBrush="Gray"
-                    BorderThickness="1"
-                    CornerRadius="10"
-                    MouseEnter="QuestionCircle_MouseEnter"
-                    MouseLeave="QuestionCircle_MouseLeave">
-                <TextBlock Text="?"
-                           Style="{x:Null}"
-                           FontSize="12"
-                           FontWeight="Bold"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"/>
-            </Border>
-
-            <Popup x:Name="hintPopup"
-                   PlacementTarget="{Binding ElementName=QuestionCircle}"
-                   Placement="Right"
-                   HorizontalOffset="5"
-                   VerticalOffset="0"
-                   IsOpen="False"
-                   AllowsTransparency="True">
-                <Border Background="White"
-                        BorderBrush="Gray"
-                        BorderThickness="1"
-                        CornerRadius="5"
-                        Padding="5">
-                    <TextBlock x:Name="hintText"
-                               Style="{x:Null}"
-                               Foreground="#000"
-                               TextAlignment="Left"
-                               TextWrapping="Wrap"
-                               MaxWidth="250"/>
-                </Border>
-            </Popup>
-        </Grid>
     </Grid>
 </UserControl>

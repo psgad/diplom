@@ -143,7 +143,7 @@ namespace Diplom
                 MessageBoxCustom.Show("Путь для установки программы не найден");
                 return;
             }
-            string url = "http://stariybog.ru:2040/api/app/download";
+            string url = "http://185.139.69.25:2040/api/app/download";
             mainBorder.IsEnabled = false;
             DownloadAndInstallExe(url);
 

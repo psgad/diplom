@@ -63,7 +63,7 @@ namespace Diplom
         {
             if (d is BlockWithQuestion control && control.title != null)
             {
-                control.title.Text = e.NewValue as string;
+                control.title.Text = e.NewValue as string;  
             }
         }
 

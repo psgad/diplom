@@ -128,18 +128,14 @@ namespace Diplom
 
                         if (newPath == "..")
                         {
-                            // Убираем последний каталог из пути
                             int lastBackslashIndex = path.LastIndexOf('\\');
-                            if (lastBackslashIndex > 3) // Убедимся, что это не корневой путь (например, "C:\")
+                            if (lastBackslashIndex > 3)
                             {
                                 path = path.Substring(0, lastBackslashIndex);
                             }
                         }
                         else if (Directory.Exists(path + "\\" + newPath))
-                        {
-                            // Обновляем путь, если папка существует
                             path = path + "\\" + newPath.Replace("/", "\\");
-                        }
                         Dispatcher.Invoke(() =>
                             codeRedactor.LoadFileSystem(path)
                         );
