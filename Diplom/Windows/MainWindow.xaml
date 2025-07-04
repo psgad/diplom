@@ -1,0 +1,329 @@
+﻿<Window x:Class="Diplom.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Diplom"
+        mc:Ignorable="d"
+        Title="Main"
+        Height="600"
+        d:Height="800"
+        d:Width="1800"
+        Width="1000"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        WindowStyle="None"
+        AllowsTransparency="True">
+    <Window.Resources>
+        <Storyboard x:Key="ShowMessageAnimation">
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                   From="350" To="0"
+                       Duration="0:0:0.5"
+                   DecelerationRatio="0.9"/>
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                   From="0" To="1" Duration="0:0:1"/>
+        </Storyboard>
+        <Storyboard x:Key="HideMessageAnimation">
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                   From="0" To="350" Duration="0:0:0.5"
+                   AccelerationRatio="0.9"/>
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                   From="1" To="0" Duration="0:0:1"/>
+        </Storyboard>
+        <Storyboard x:Key="ShowSidebarAnimation">
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                   From="-350" To="0" Duration="0:0:0.5"
+                   AccelerationRatio="0.9"/>
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                   From="0" To="1" Duration="0:0:1"/>
+        </Storyboard>
+        <Storyboard x:Key="HideSidebarAnimation">
+            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                   From="0" To="-350" Duration="0:0:0.5"
+                   AccelerationRatio="0.9"/>
+            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                   From="1" To="0" Duration="0:0:1"/>
+        </Storyboard>
+        <Style TargetType="Border">
+            <Setter Property="CornerRadius" Value="15"/>
+        </Style>
+
+
+    </Window.Resources>
+    <Border BorderThickness="6"
+            CornerRadius="15"
+            Opacity="0.97"
+            Background="#FF8F82ED" 
+            x:Name="mainBorder"
+            BorderBrush="#4c0000"
+            >
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="350"/>
+                <ColumnDefinition Width="111*"/>
+                <ColumnDefinition Width="330"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="92"/>
+                <RowDefinition Height="550*"/>
+                <RowDefinition Height="138"/>
+            </Grid.RowDefinitions>
+            <Button HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Grid.RowSpan="2"
+                    Content="☰"
+                    x:Name="burger"
+                    Margin="5"
+                    Style="{DynamicResource burger}" Click="Button_Click_2"/>
+            <Border Grid.RowSpan="4"
+                    Width="350"
+                    Panel.ZIndex="1"
+                    HorizontalAlignment="Left"
+                    CornerRadius="12,0,0,12"
+                    Background="#FF4F3892"
+                    x:Name="SidebarGrid"
+                    Opacity="1"
+                    >
+
+                <Border.RenderTransform>
+                    <TranslateTransform X="-350" Y="0"/>
+                </Border.RenderTransform>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Боковая панель голосового ассистента"
+                           Style="{DynamicResource title}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           FontSize="18"/>
+                    <StackPanel Grid.Row="1"
+                            Background="White"
+                            VerticalAlignment="Top">
+                        <Button Click="Button_Click"
+                            x:Name="guideButton"
+                            Style="{DynamicResource default}">
+                            <TextBlock Text=" 📖 Руководство пользователя"
+                                   Tag="Guide"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Left"/>
+                        </Button>
+
+                        <Button Click="Button_Click"
+                            Style="{DynamicResource default}">
+                            <TextBlock Text=" 💾 Получение и установка голосового ассистента"
+                                   TextWrapping="Wrap"
+                                   Tag="Install"
+                                   TextAlignment="Left"/>
+                        </Button>
+                        <Button Click="Button_Click"
+                            Style="{DynamicResource default}">
+                            <TextBlock Text=" 🗃️ Добавление и обновления приложений"
+                                   TextWrapping="Wrap"
+                                   Tag="BotApps"
+                                   TextAlignment="Left"/>
+                        </Button>
+                        <Button Click="Button_Click"
+                            Style="{DynamicResource default}">
+                            <TextBlock Text=" ⚙️ Настройки голосового ассистента"
+                                   Tag="BotSettings"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Left"/>
+                        </Button>
+                        <Button Click="Button_Click"
+                            Style="{DynamicResource default}">
+                            <TextBlock Text=" 📝 Текстовый редактор"
+                                   Tag="CodeEditor"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Left"/>
+                        </Button>
+                        <Button Click="Button_Click"
+                            Style="{DynamicResource default}">
+                            <TextBlock Text=" ⌨️ Настройка привязок названий к кнопкам"
+                                   Tag="Bindings"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Left"/>
+                        </Button>
+                        <Button Click="Button_Click"
+                            Style="{DynamicResource default}">
+                            <TextBlock Text=" 🎬 Добавление и изменение сценариев"
+                                   TextWrapping="Wrap"
+                                   Tag="Scenarios"
+                                   TextAlignment="Left"/>
+                        </Button>
+                        <Button Click="Button_Click"
+                            Style="{DynamicResource default}">
+                            <TextBlock Text=" 📜 Логи голосового ассистента"
+                                   Tag="Logs"
+                                   TextWrapping="Wrap"
+                                   TextAlignment="Left"/>
+                        </Button>
+                    </StackPanel>
+                    <Button Content="Запусть голосового ассистента"
+                            Grid.Row="2"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Center"
+                            Margin="10" Click="Button_Click_3"
+                            />
+                </Grid>
+            </Border>
+            <Border Grid.Row="3"
+                    Panel.ZIndex="1"
+                    Margin="10"
+                    Background="LightGray"
+                    x:Name="messageGrid"
+                    Grid.Column="2"
+                    BorderThickness="2"
+                    BorderBrush="Black"
+                    Opacity="0"
+                    CornerRadius="10">
+                <Border.RenderTransform>
+                    <TranslateTransform X="350" Y="0"/>
+                </Border.RenderTransform>
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="18*"/>
+                        <RowDefinition Height="13*"/>
+                        <RowDefinition Height="72*"/>
+                        <RowDefinition Height="28*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="63*"/>
+                        <ColumnDefinition Width="184*"/>
+                        <ColumnDefinition Width="17*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="messageTitle"
+                   Grid.ColumnSpan="3"
+                   Text="Предупреждение"
+                   FontSize="10"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+
+                   FontWeight="DemiBold"
+                   Margin="5,0,0,0"/>
+                    <Image Grid.Row="2"
+               Grid.Column="1"
+               Source="error.ico"
+               x:Name="messageIcon"/>
+                    <TextBlock Grid.Row="2"
+                   Grid.Column="2"
+                   x:Name="messageText"
+                               Style="{DynamicResource subtitle}"
+                               Foreground="#000"
+                               FontSize="14"
+                   TextWrapping="Wrap"
+                   TextAlignment="Justify"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
+
+                </Grid>
+            </Border>
+            <Grid Grid.ColumnSpan="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="10"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="3"
+                Width="15"
+                Height="15"
+                FontSize="15"
+                Background="#ff6158"
+                Cursor="Hand"
+                BorderThickness="0.3"
+                Click="CloseButton_Click">
+                    <TextBlock HorizontalAlignment="Center"
+                     VerticalAlignment="Center"
+                     TextAlignment="Center"
+                     Text="×"
+                     Padding="0,0,0,3"/>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+                      BorderThickness="{TemplateBinding BorderThickness}"
+                      BorderBrush="{TemplateBinding BorderBrush}"
+                      CornerRadius="15">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Foreground" Value="#4c0000"/>
+                            <Setter Property="BorderBrush" Value="#ed4a46"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="BorderBrush" Value="Black"/>
+                                </Trigger>
+                                <Trigger Property="IsFocused" Value="True">
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="BorderBrush" Value="Black"/>
+                                </Trigger>
+
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button Grid.Column="2"
+                        Width="15"
+                        Height="15"
+                        FontSize="15"
+                        Background="#FF55B755"
+                        Cursor="Hand"
+                        BorderThickness="0.3"
+                        Click="MinimizeButton_Click">
+                    <TextBlock HorizontalAlignment="Center"
+     VerticalAlignment="Center"
+     TextAlignment="Center"
+     Text="-"
+     Padding="0,0,0,3"/>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+      BorderThickness="{TemplateBinding BorderThickness}"
+      BorderBrush="{TemplateBinding BorderBrush}"
+      CornerRadius="15">
+                                <ContentPresenter HorizontalAlignment="Center"
+                  VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Foreground" Value="#4c0000"/>
+                            <Setter Property="BorderBrush" Value="#FF55B755"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="BorderBrush" Value="Black"/>
+                                </Trigger>
+                                <Trigger Property="IsFocused" Value="True">
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="BorderBrush" Value="Black"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid>
+            <ScrollViewer VerticalScrollBarVisibility="Hidden"
+                          HorizontalScrollBarVisibility="Hidden"
+                          Margin="20"
+                          Grid.Row="2"
+                          Grid.ColumnSpan="3"
+                          Grid.RowSpan="2">
+                <Frame x:Name="content" 
+                       NavigationUIVisibility="Hidden"
+                       />
+            </ScrollViewer>
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,471 @@
+﻿<Page x:Class="Diplom.Guide"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      Title="Guide" 
+      Width="1300" 
+      Height="832"
+      d:Height="2350">
+    <Page.Resources>
+        <Style x:Key="NavButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#3C3C3C"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Margin" Value="5,5"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Consolas"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                Padding="{TemplateBinding Padding}"
+                                CornerRadius="8"
+                                BorderThickness="1"
+                                BorderBrush="#4A4A4A">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#4A4A4A"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#5A5A5A"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Border Background="#2D2D2D" CornerRadius="15" Margin="10">
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <DockPanel Grid.Row="0">
+                <TextBlock Text="Руководство пользователя"
+                           Style="{DynamicResource title}"
+                           FontSize="24"
+                           Margin="20,20,0,10"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"/>
+            </DockPanel>
+
+            <WrapPanel Grid.Row="1"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center">
+                <Button Content="🛠 Настройка"
+                        Style="{StaticResource NavButtonStyle}"
+                        Click="ScrollToSection_Click" 
+                        Tag="Настройка ассистента"/>
+                <Button Content="📂 Программы" 
+                        Style="{StaticResource NavButtonStyle}"
+                        Click="ScrollToSection_Click" 
+                        Tag="Команды управления программами"/>
+                <Button Content="🔊 Система" 
+                        Style="{StaticResource NavButtonStyle}"
+                        Click="ScrollToSection_Click" 
+                        Tag="Управление системой"/>
+                <Button Content="💡 Примеры" 
+                        Style="{StaticResource NavButtonStyle}"
+                        Click="ScrollToSection_Click" 
+                        Tag="Примеры"/>
+                <Button Content="🌐 Поиск" 
+                        Style="{StaticResource NavButtonStyle}"
+                        Click="ScrollToSection_Click" 
+                        Tag="Поиск в интернете"/>
+                <Button Content="🎨 Темы" 
+                        Style="{StaticResource NavButtonStyle}"
+                        Click="ScrollToSection_Click" 
+                        Tag="Темы оформления"/>
+                <Button Content="🧠 Окна" 
+                        Style="{StaticResource NavButtonStyle}"
+                        Click="ScrollToSection_Click" 
+                        Tag="Переключение между окнами"/>
+                <Button Content="⌨️ Клавиши" 
+                        Style="{StaticResource NavButtonStyle}"
+                        Click="ScrollToSection_Click" 
+                        Tag="Нажатие клавиш"/>
+                <Button Content="📜 Сценарии" 
+                        Style="{StaticResource NavButtonStyle}"
+                        Click="ScrollToSection_Click" 
+                        Tag="Сценарии"/>
+                <Button Content="📊 Команды" 
+                        Style="{StaticResource NavButtonStyle}"
+                        Click="ScrollToSection_Click" 
+                        Tag="Таблица доступных команд"/>
+            </WrapPanel>
+            <Border Grid.Row="2"
+                    CornerRadius="12"
+                    Background="#3C3C3C"
+                    Margin="10">
+
+                <ScrollViewer x:Name="ContentScrollViewer" 
+                          Padding="20"
+                          VerticalScrollBarVisibility="Hidden" 
+                          HorizontalScrollBarVisibility="Disabled">
+                    <RichTextBox IsReadOnly="True" 
+                             BorderThickness="0" 
+                             Background="#3C3C3C" 
+                             Foreground="White" 
+                             FontSize="16" 
+                             FontFamily="Consolas">
+                        <FlowDocument>
+                            <Paragraph FontSize="24" FontWeight="Bold" Foreground="White" Margin="0,0,0,10">
+                                Руководство пользователя голосового ассистента "Джарвис"
+                            </Paragraph>
+
+                            <Paragraph Margin="0,0,0,10">
+                                Добро пожаловать в помощника "Джарвис". Этот ассистент позволяет управлять вашим компьютером голосом.
+                            Для активации произнесите "Джарвис" или используйте консольный ввод. В этом руководстве описаны все доступные команды, примеры использования, а также информация по настройке.
+                            </Paragraph>
+
+                            <Section x:Name="SectionSetup">
+                                <Paragraph FontSize="18" FontWeight="Bold" Margin="0,10,0,5">🛠 Настройка ассистента</Paragraph>
+                                <Paragraph>
+                                    Вы можете настроить список приложений, доступных для управления (открытие, закрытие, автозагрузка), через файл apps_dict.json в папке ~/AppData/VoiceAssistantBot/config. Сценарии настраиваются в scenarios.json.
+                                </Paragraph>
+                                <Paragraph FontStyle="Italic">Не забудьте сохранить изменения после редактирования конфигурации!</Paragraph>
+                            </Section>
+
+                            <Section x:Name="SectionPrograms">
+                                <Paragraph FontSize="18" FontWeight="Bold" Margin="0,10,0,5">📂 Команды управления программами</Paragraph>
+                                <List MarkerStyle="Disc">
+                                    <ListItem>
+                                        <Paragraph>Открой [название] — запуск программы</Paragraph>
+                                    </ListItem>
+                                    <ListItem>
+                                        <Paragraph>Закрой [название] — закрытие программы</Paragraph>
+                                    </ListItem>
+                                    <ListItem>
+                                        <Paragraph>Удали [название] — удаление программы через winget</Paragraph>
+                                    </ListItem>
+                                    <ListItem>
+                                        <Paragraph>Добавь в автозагрузку [название] — добавление в автозапуск</Paragraph>
+                                    </ListItem>
+                                    <ListItem>
+                                        <Paragraph>Удали из автозагрузки [название] — удаление из автозапуска</Paragraph>
+                                    </ListItem>
+                                </List>
+                            </Section>
+
+                            <Section x:Name="SectionSystem">
+                                <Paragraph FontSize="18" FontWeight="Bold" Margin="0,10,0,5">🔊 Управление системой</Paragraph>
+                                <List MarkerStyle="Disc">
+                                    <ListItem>
+                                        <Paragraph>Выключи — завершение работы</Paragraph>
+                                    </ListItem>
+                                    <ListItem>
+                                        <Paragraph>Перезагрузи — перезапуск ПК</Paragraph>
+                                    </ListItem>
+                                    <ListItem>
+                                        <Paragraph>Спящий — переход в спящий режим</Paragraph>
+                                    </ListItem>
+                                    <ListItem>
+                                        <Paragraph>Заблокируй — блокировка экрана</Paragraph>
+                                    </ListItem>
+                                    <ListItem>
+                                        <Paragraph>Громкость вверх — увеличение громкости на 10%</Paragraph>
+                                    </ListItem>
+                                    <ListItem>
+                                        <Paragraph>Громкость вниз — уменьшение громкости на 10%</Paragraph>
+                                    </ListItem>
+                                    <ListItem>
+                                        <Paragraph>Громкость на [число от 0 до 100] — установка уровня громкости</Paragraph>
+                                    </ListItem>
+                                    <ListItem>
+                                        <Paragraph>Анализ системы — сканирование системы и сохранение в system_scan.txt</Paragraph>
+                                    </ListItem>
+                                </List>
+                            </Section>
+
+                            <Section x:Name="SectionExamples">
+                                <Paragraph FontSize="18" FontWeight="Bold" Margin="0,10,0,5">💡 Примеры</Paragraph>
+                                <Paragraph>
+                                    Ниже приведены примеры команд:
+                                </Paragraph>
+                                <List>
+                                    <ListItem>
+                                        <Paragraph>"Джарвис, открой телегу"</Paragraph>
+                                    </ListItem>
+                                    <ListItem>
+                                        <Paragraph>"Джарвис, добавь  в автозагрузку телегу"</Paragraph>
+                                    </ListItem>
+                                    <ListItem>
+                                        <Paragraph>"Джарвис, громкость на 50"</Paragraph>
+                                    </ListItem>
+                                </List>
+                            </Section>
+
+                            <Section x:Name="SectionSearch">
+                                <Paragraph FontSize="18" FontWeight="Bold" Margin="0,10,0,5">🌐 Поиск в интернете</Paragraph>
+                                <Paragraph>
+                                    Для поиска используйте команду:
+                                    <Bold>Найди в браузере [запрос]</Bold>
+                                </Paragraph>
+                                <Paragraph FontStyle="Italic">
+                                    Пример: "Джарвис, найди в браузере как сварить борщ"
+                                </Paragraph>
+                            </Section>
+
+                            <Section x:Name="SectionThemes">
+                                <Paragraph FontSize="18" FontWeight="Bold" Margin="0,10,0,5">🎨 Темы оформления</Paragraph>
+                                <List MarkerStyle="Disc">
+                                    <ListItem>
+                                        <Paragraph>Смени тему на тёмную — установка тёмной темы Windows</Paragraph>
+                                    </ListItem>
+                                    <ListItem>
+                                        <Paragraph>Смени тему на светлую — установка светлой темы Windows</Paragraph>
+                                    </ListItem>
+                                </List>
+                            </Section>
+
+                            <Section x:Name="SectionWindows">
+                                <Paragraph FontSize="18" FontWeight="Bold" Margin="0,10,0,5">🧠 Переключение между окнами</Paragraph>
+                                <Paragraph>
+                                    Вы можете переключаться между окнами по номеру, порядку или названию приложения:
+                                </Paragraph>
+                                <List>
+                                    <ListItem>
+                                        <Paragraph>Переключи на [число] — переход на окно по номеру</Paragraph>
+                                    </ListItem>
+                                    <ListItem>
+                                        <Paragraph>Переключи на следующее окно — переход на следующее окно</Paragraph>
+                                    </ListItem>
+                                    <ListItem>
+                                        <Paragraph>Переключи на прошлое окно — переход на предыдущее окно</Paragraph>
+                                    </ListItem>
+                                    <ListItem>
+                                        <Paragraph>Переключи на [название] — переход на окно приложения</Paragraph>
+                                    </ListItem>
+                                </List>
+                            </Section>
+
+                            <Section x:Name="SectionKeys">
+                                <Paragraph FontSize="18" FontWeight="Bold" Margin="0,10,0,5">⌨️ Нажатие клавиш</Paragraph>
+                                <Paragraph>
+                                    Вы можете голосом нажимать заранее настроенные клавиши из bindings.py:
+                                </Paragraph>
+                                <List>
+                                    <ListItem>
+                                        <Paragraph>Нажми [название клавиши] — нажатие указанной клавиши</Paragraph>
+                                    </ListItem>
+                                </List>
+                                <Paragraph FontStyle="Italic">
+                                    Пример: "Джарвис, нажми пробел"
+                                </Paragraph>
+                            </Section>
+
+                            <Section x:Name="SectionScenarios">
+                                <Paragraph FontSize="18" FontWeight="Bold" Margin="0,10,0,5">📜 Сценарии</Paragraph>
+                                <List MarkerStyle="Disc">
+                                    <ListItem>
+                                        <Paragraph>Запусти сценарий [имя сценария] — альтернативный запуск сценария</Paragraph>
+                                    </ListItem>
+                                </List>
+                                <Paragraph FontStyle="Italic">
+                                    Сценарии настраиваются в ~/AppData/VoiceAssistantBot/config/scenarios.json.
+                                </Paragraph>
+                            </Section>
+
+                            <Section x:Name="SectionCommandsTable">
+                                <Paragraph FontSize="18" FontWeight="Bold" Margin="0,10,0,5">📊 Таблица доступных команд</Paragraph>
+                                <Table TextAlignment="Center" BorderThickness="1" BorderBrush="#FFFFFF" CellSpacing="0">
+                                    <Table.Columns>
+                                        <TableColumn Width="2*"/>
+                                        <TableColumn Width="3*"/>
+                                    </Table.Columns>
+                                    <TableRowGroup>
+                                        <TableRow Background="#4A4A4A">
+                                            <TableCell>
+                                                <Paragraph FontWeight="Bold">Команда</Paragraph>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Paragraph FontWeight="Bold">Описание</Paragraph>
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell>
+                                                <Paragraph>Открой [наименование]</Paragraph>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Paragraph>Запуск программы, файла, сайта или папки</Paragraph>
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell>
+                                                <Paragraph>Закрой [наименование]</Paragraph>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Paragraph>Закрытие программы</Paragraph>
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell>
+                                                <Paragraph>Удали [наименование]</Paragraph>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Paragraph>Удаление программы через winget</Paragraph>
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell>
+                                                <Paragraph>Добавь в автозагрузку [наименование]</Paragraph>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Paragraph>Добавление приложения в автозагрузку</Paragraph>
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell>
+                                                <Paragraph>Удали из автозагрузки [наименование]</Paragraph>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Paragraph>Удаление приложения из автозагрузки</Paragraph>
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell>
+                                                <Paragraph>Выключи</Paragraph>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Paragraph>Выключение компьютера</Paragraph>
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell>
+                                                <Paragraph>Перезагрузи</Paragraph>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Paragraph>Перезагрузка компьютера</Paragraph>
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell>
+                                                <Paragraph>Спящий</Paragraph>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Paragraph>Перевод компьютера в режим сна</Paragraph>
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell>
+                                                <Paragraph>Заблокируй</Paragraph>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Paragraph>Блокирование компьютера</Paragraph>
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell>
+                                                <Paragraph>Громкость вверх</Paragraph>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Paragraph>Увеличение громкости на 10%</Paragraph>
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell>
+                                                <Paragraph>Громкость вниз</Paragraph>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Paragraph>Уменьшение громкости на 10%</Paragraph>
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell>
+                                                <Paragraph>Громкость на [число]</Paragraph>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Paragraph>Установка уровня громкости (0-100)</Paragraph>
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell>
+                                                <Paragraph>Анализ системы</Paragraph>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Paragraph>Сканирование системы, результаты в system_scan.txt</Paragraph>
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell>
+                                                <Paragraph>Найди в браузере [запрос]</Paragraph>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Paragraph>Поиск запроса в браузере</Paragraph>
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell>
+                                                <Paragraph>Смени тему на [тёмную/светлую]</Paragraph>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Paragraph>Смена системной темы</Paragraph>
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell>
+                                                <Paragraph>Переключи на [число/следующее/прошлое/наименование]</Paragraph>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Paragraph>Переключение на окно по номеру, порядку или названию</Paragraph>
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell>
+                                                <Paragraph>Нажми [название клавиши]</Paragraph>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Paragraph>Нажатие клавиши из bindings.py</Paragraph>
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell>
+                                                <Paragraph>Запусти сценарий [имя сценария]</Paragraph>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Paragraph>Запуск сценария</Paragraph>
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell>
+                                                <Paragraph>Покажи все приложения</Paragraph>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Paragraph>Вывод списка приложений в лог</Paragraph>
+                                            </TableCell>
+                                        </TableRow>
+                                    </TableRowGroup>
+                                </Table>
+                            </Section>
+                        </FlowDocument>
+                    </RichTextBox>
+                </ScrollViewer>
+
+            </Border>
+        </Grid>
+
+    </Border>
+
+    <Page.Triggers>
+        <EventTrigger RoutedEvent="Page.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                     From="0" To="1"
+                                     Duration="0:0:0.5"
+                                     DecelerationRatio="0.9"/>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Page.Triggers>
+</Page>

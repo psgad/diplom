@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Diplom.MessageBoxCustom" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAQAAAAEAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Windows\MessageBoxCustom.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Diplom.MainWindow" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAwAAABAAAgBAAAAAkgAAAAAAAIAIAAyIAAACA=</HashCode>
+      <FileName>Windows\MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Diplom.AppNameWithDelete" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UserControls\AppNameWithDelete.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Diplom.AppView" BaseTypeListCollapsed="true">
+    <Position X="4" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UserControls\AppView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Diplom.BlockWithQuestion" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CCAAAICQCBCAAACBAAAAAAAIAAAAAAAEBAAAAAAAAAA=</HashCode>
+      <FileName>UserControls\BlockWithQuestion.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Diplom.ConsoleInput" BaseTypeListCollapsed="true">
+    <Position X="11" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAYAgAAACAAgCACAAAEAAAAAACGAAAIAAAAA=</HashCode>
+      <FileName>UserControls\ConsoleInput.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Diplom.UpdateSoftware" BaseTypeListCollapsed="true">
+    <Position X="16.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgBABiDSAAgEACAR+AEhQAQAg0JEICIIABBAAAAAAAA=</HashCode>
+      <FileName>Pages\UpdateSoftware.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Diplom.LogChecker" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pages\LogChecker.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Diplom.Guide" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAABAAAAAAAAABAAAAAAIEAAAAAAAAAA=</HashCode>
+      <FileName>Pages\Guide.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Diplom.DownloadBotPage" BaseTypeListCollapsed="true">
+    <Position X="12.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAACAhIIIQAABAAoFgiQAAAkgAAAAAAAEASAgAAAAA=</HashCode>
+      <FileName>Pages\DownloadBotPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Diplom.CodeRedactor" BaseTypeListCollapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgACEIIAgQSAAAAAIQCCSAADggAAAAgABAAAQACQAAA=</HashCode>
+      <FileName>Pages\CodeRedactor.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Diplom.BotSettings" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BBAAAAAAAAAAAADAJAAAAAAAgAAAAgAAEAAAAIAAAAA=</HashCode>
+      <FileName>Pages\BotSettings.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Diplom.BotAppsSettings" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AiAAAAIAAAAAAAABAAEAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pages\BotAppsSettings.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Diplom.Models.utils">
+    <Position X="9.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAKAAABAAAAAAACACAAAMAAAAAAAAAABAIAAAABAAGA=</HashCode>
+      <FileName>Models\utils.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Models.Software">
+    <Position X="2.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAABAAAAAAAAAAAIAAAAAAAAABAAAAIA=</HashCode>
+      <FileName>Models\Software.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Models.software_type">
+    <Position X="0.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Software.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Models.serializer">
+    <Position X="7.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Models\serializer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.LoadingWindow">
+    <Position X="12.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Windows\LoadingWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Diplom.ActionView" BaseTypeListCollapsed="true">
+    <Position X="19.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAQQAAAEEgCAQIAJAEAgAgEAABCEAAAAAAAAAJAA=</HashCode>
+      <FileName>UserControls\ActionView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Diplom.BindingView" BaseTypeListCollapsed="true">
+    <Position X="11" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>UserControls\BindingView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Diplom.ScenariosView" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAEAAAAAAAAAAAQAAAABAAA=</HashCode>
+      <FileName>UserControls\ScenariosView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Diplom.Bindings" BaseTypeListCollapsed="true">
+    <Position X="11" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pages\Bindings.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Diplom.Scenarios" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAEAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pages\Scenarios.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Diplom.UpdateScenarios" BaseTypeListCollapsed="true">
+    <Position X="18" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>KCAAACAFAAAEAEBAAACDAAAAAAIEAAAAAABAAAABAAA=</HashCode>
+      <FileName>Pages\UpdateScenarios.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Diplom.Models.Scenarios_">
+    <Position X="11" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\scenarios.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Diplom.Models.ActionScenarios">
+    <Position X="5.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAABACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\scenarios.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Diplom.MessageType">
+    <Position X="7.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAEAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Models\MessageType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Diplom.Models.APP_PROPERTIES">
+    <Position X="5.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYJAAAAAAAAAAAAAIAAAAAAAAAAAQYAAAAAAIAEAAA=</HashCode>
+      <FileName>Models\utils.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Diplom.Models.ActionType">
+    <Position X="7.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAAQAIAAAAAgAIAA=</HashCode>
+      <FileName>Models\scenarios.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
